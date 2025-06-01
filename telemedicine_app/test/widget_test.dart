@@ -11,20 +11,47 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:telemedicine_app/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('App should render without crashing', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the app renders without crashing
+    expect(find.byType(MaterialApp), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Home screen should show main features', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Wait for the app to load
+    await tester.pumpAndSettle();
+
+    // Verify that main features are present
+    expect(find.text('Symptom Analysis'), findsOneWidget);
+    expect(find.text('Find Doctors'), findsOneWidget);
+    expect(find.text('Health Records'), findsOneWidget);
+  });
+
+  testWidgets('Symptom analysis screen should show input field', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    // Navigate to symptom analysis screen
+    await tester.tap(find.text('Symptom Analysis'));
+    await tester.pumpAndSettle();
+
+    // Verify that the input field is present
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text('Describe your symptoms'), findsOneWidget);
+  });
+
+  testWidgets('Doctor search screen should show search field', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    // Navigate to doctor search screen
+    await tester.tap(find.text('Find Doctors'));
+    await tester.pumpAndSettle();
+
+    // Verify that the search field is present
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text('Search doctors'), findsOneWidget);
   });
 }
