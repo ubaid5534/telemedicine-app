@@ -1,45 +1,92 @@
-# Telemedicine Mobile Application
+# Telemedicine Application
 
-A cross-platform healthcare mobile application that enables users to search symptoms, receive AI-analyzed cure recommendations, and locate nearby doctors.
+A comprehensive telemedicine solution with symptom analysis and doctor consultation features.
+
+## Project Structure
+
+```
+Project/
+├── backend/              # FastAPI backend service
+│   ├── main.py          # Main FastAPI application
+│   ├── requirements.txt # Python dependencies
+│   └── Dockerfile      # Backend container configuration
+└── telemedicine_app/    # Flutter frontend application
+    ├── lib/            # Dart source code
+    ├── pubspec.yaml    # Flutter dependencies
+    └── README.md       # Flutter app documentation
+```
 
 ## Features
 
-- AI Symptom Analyzer
-  - Text and voice input for symptoms
-  - AI-powered analysis using medical NLP
-  - Ranked condition probabilities
-  - Home remedies and OTC solutions
+- Symptom Analysis using AI
+- Doctor Search and Filtering
+- Video Consultations
+- Health Records Management
+- User Authentication
 
-- AI Health Assistant
-  - Voice/text chatbot
-  - Simplified medical term explanations
-  - Step-by-step health guidance
+## Setup Instructions
 
-## Setup
+### Backend Setup
 
-1. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the server:
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+### Flutter App Setup
+
+1. Navigate to the Flutter app directory:
+   ```bash
+   cd telemedicine_app
+   ```
 
 2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   flutter pub get
+   ```
 
-3. Run the application:
-```bash
-python main.py
-```
+3. Run the app:
+   ```bash
+   flutter run
+   ```
 
-## Requirements
+## Development
 
-- Python 3.8 or higher
-- TensorFlow 2.x
-- Kivy 2.2.1
-- Other dependencies listed in requirements.txt
+- Backend API runs on `http://localhost:8000`
+- API documentation available at `http://localhost:8000/docs`
+- Flutter app configured to connect to local backend in development
 
-## Note
+## Deployment
 
-This application is for educational purposes only and should not be used as a substitute for professional medical advice. Always consult with healthcare professionals for medical decisions. 
+The application is configured for deployment on Render.com:
+- Backend service: Web Service
+- Environment variables configured in Render dashboard
+- Automatic deployments from GitHub
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
